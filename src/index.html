@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Challenge 29</title>
+</head>
+
+<body>
+  <header>
+    <h1 data-js="company" class="company"></h1>
+    <h5 data-js="phone" class="phone"></h5>
+  </header>
+
+  <div class="container">
+    <form data-js="form-car">
+
+      <div class="form-car">
+        <label>Imagem</label>
+        <input type="text" data-js="img-input" class="input-car" placeholder="url da imagem">
+      </div>
+
+      <div class="form-car">
+        <label>Modelo</label>
+        <input type="text" data-js="modelo-input" class="input-car" placeholder="marca/modelo">
+      </div>
+
+      <div class="form-car">
+        <label>Ano</label>
+        <input type="text" data-js="ano-input" class="input-car" placeholder="YYYY">
+      </div>
+
+      <div class="form-car">
+        <label>Placa</label>
+        <input type="text" data-js="placa-input" class="input-car" placeholder="AAA-0000">
+      </div>
+
+      <div class="form-car">
+        <label>Cor</label>
+        <input type="text" data-js="cor-input" class="input-car"  placeholder="cor">
+      </div>
+
+      <button type="submit" class="register">Cadastrar</button>
+      <button data-js="clean-button" class="clean">Limpar</button>
+    </form>
+
+    <table data-js="table">
+      <tr>
+        <th>Imagem</th>
+        <th>Modelo</th>
+        <th>Ano</th>
+        <th>Placa</th>
+        <th>Cor</th>
+      </tr>
+    </table>
+  </div>
+
+  <script src="../libs/DOM.js"></script>
+  <script src="./index.js"></script>
+</body>
+
+</html>

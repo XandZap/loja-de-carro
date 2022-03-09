@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #e9eaec;
+}
+
+header .company {
+  font-size: 30px;
+  margin: 10px 0;
+  text-align: center;
+  color: #333652;
+}
+
+header .phone {
+  margin-bottom: 25px;
+  text-align: center;
+  color: #333652;
+}
+
+.container {
+  margin: 25px;
+  padding: 25px;
+  background-color: #90adc6;
+  box-shadow: 4px 4px 10px rgba(162, 162, 162, 1);
+}
+
+.container .form-car {
+  margin: 5px 0 10px;
+}
+
+label {
+  display: flex;
+  color: #333652;
+}
+
+.input-car {
+  width: 400px;
+  border: 1px solid #e6e6e6;
+  border-radius: 3px;
+  outline: none;
+  padding: 5px;
+  background-color: #E9EAEC;
+}
+
+.register {
+  margin: 10px auto 5px;
+  padding: 8px 8px;
+  background-color: #FAD02C;
+  border: none;
+  border-radius: 10px;
+}
+
+.clean{
+  margin: 10px auto 5px;
+  padding: 8px 8px;
+  background-color: #57A5B8;
+  border: none;
+  border-radius: 10px;
+}
+
+table {
+  width: 100%;
+  margin: 20px 0;
+  color: #333652;
+}
+
+th {
+  padding: 5px;
+  color: #333652;
+}
+
+tr {
+  padding: 5px;
+  text-align: center;
+}
+
+img {
+  max-width: 100px;
+  height: auto;
+}
