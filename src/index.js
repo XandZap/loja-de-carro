@@ -45,6 +45,18 @@
         app().postCar();
       },
 
+      postCar: function postCar() {
+        let post = new XMLHttpRequest();
+        let carInput = app().createCarInput();
+        post.open("POST", "http://localhost:3000/car");
+        post.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        post.send(
+          `image=${carInput.image}&brandModel=${carInput.brandModel}&year=${carInput.year}&plate=${carInput.plate}&color=${carInput.color}`
+        );
+        location.reload();
+        app().getCar();
+      },
+
       getCar: function getCar() {
         let get = new XMLHttpRequest();
         get.open("GET", "http://localhost:3000/car");
@@ -61,18 +73,6 @@
         );
       },
 
-      postCar: function postCar() {
-        let post = new XMLHttpRequest();
-        let carInput = app().createCarInput();
-        post.open("POST", "http://localhost:3000/car");
-        post.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        post.send(
-          `image=${carInput.image}&brandModel=${carInput.brandModel}&year=${carInput.year}&plate=${carInput.plate}&color=${carInput.color}`
-        );
-        location.reload();
-        app().getCar();
-      },
-
       addCar: function addCar(car) {
         car.forEach((carObject) => {
           let $tr = document.createElement("tr");
@@ -84,27 +84,47 @@
             if (key === "image") {
               $img.src = carObject.image;
               tdObject.image.appendChild($img);
+              tdObject.image.className = key;
               $tr.appendChild(tdObject.image);
               return;
             }
             tdObject[key].textContent = carObject[key];
+            tdObject[key].className = key;
             $tr.appendChild(tdObject[key]);
           });
+
           $tr.appendChild($removeButton);
+
           DOM('[data-js="table"]').get().appendChild($tr);
         });
       },
 
       clearForm: function clearForm() {
-        DOM('[data-js="image-input"]').get().value = "";
-        DOM('[data-js="brandModel-input"]').get().value = "";
-        DOM('[data-js="year-input"]').get().value = "";
-        DOM('[data-js="plate-input"]').get().value = "";
-        DOM('[data-js="color-input"]').get().value = "";
+        let carInput = app().createCarInput();
+        console.log(carInput);
+        Object.keys(carInput).forEach((key) => {
+          DOM(`[data-js="${key}-input"]`).get().value = "";
+        });
       },
 
       removeRow: function removeRow() {
+        let del = new XMLHttpRequest();
+        let trToRemoveCollection = this.parentNode.children;
+        del.open("DELETE", "http://localhost:3000/car");
+        del.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        for (let item of trToRemoveCollection) {
+          if (item.className === "plate") del.send(`plate=${item.textContent}`);
+        }
         DOM('[data-js="table"]').get().deleteRow(this.parentNode.rowIndex);
+      },
+
+      createRemoveButton: function createRemoveButton() {
+        let $removeButton = document.createElement("button");
+        $removeButton.setAttribute("class", "remove-button");
+        $removeButton.setAttribute("data-js", "remove-button");
+        $removeButton.textContent = "X";
+        $removeButton.onclick = this.removeRow;
+        return $removeButton;
       },
 
       createTdObject: function createTdObject() {
@@ -115,15 +135,6 @@
           plate: document.createElement("td"),
           color: document.createElement("td"),
         };
-      },
-
-      createRemoveButton: function createRemoveButton() {
-        let $removeButton = document.createElement("button");
-        $removeButton.setAttribute("class", "remove-button");
-        $removeButton.setAttribute("data-js", "remove-button");
-        $removeButton.textContent = "X";
-        $removeButton.onclick = this.removeRow;
-        return $removeButton;
       },
 
       createCarInput: function createCarInput() {
