@@ -52,6 +52,7 @@
         let $tdAno = document.createElement("td");
         let $tdPlaca = document.createElement("td");
         let $tdCor = document.createElement("td");
+        let $removeButton = document.createElement("button");
 
         $img.src = DOM('[data-js="img-input"]').get().value;
         $tdImagem.appendChild($img);
@@ -61,11 +62,17 @@
         $tdPlaca.textContent = DOM('[data-js="placa-input"]').get().value;
         $tdCor.textContent = DOM('[data-js="cor-input"]').get().value;
 
+        $removeButton.setAttribute("class", "remove-button");
+        $removeButton.setAttribute("data-js", "remove-button");
+        $removeButton.textContent = "X";
+        $removeButton.onclick = this.removeRow;
+
         $tr.appendChild($tdImagem);
         $tr.appendChild($tdModelo);
         $tr.appendChild($tdAno);
         $tr.appendChild($tdPlaca);
         $tr.appendChild($tdCor);
+        $tr.appendChild($removeButton);
 
         app().clearForm();
         return $tr;
@@ -77,6 +84,10 @@
         DOM('[data-js="ano-input"]').get().value = "";
         DOM('[data-js="placa-input"]').get().value = "";
         DOM('[data-js="cor-input"]').get().value = "";
+      },
+
+      removeRow: function removeRow() {
+        DOM('[data-js="table"]').get().deleteRow(this.parentNode.rowIndex);
       },
     };
   }
